@@ -75,3 +75,7 @@ A GitHub Actions deployment is included at `.github/workflows/deploy.yml`.
 ## Future upgrades
 
 QR-linked verification page, uploaded signed letters, actual user assignment picker, detailed audit log, downloadable signed PDF templates, receipts review flow, privacy-policy page, and sponsor contact form (requires email backend and spam controls).
+
+
+## Personalized sponsor links
+See `PERSONALIZED_LINKS_SETUP.md` and run the matching SQL migration.
