@@ -15,7 +15,215 @@ const csvEscape = val => '"'+String(val??'').replaceAll('"','""')+'"'
 function downloadCSV(filename,headers,rows){ const content='\uFEFF'+[headers,...rows].map(row=>row.map(csvEscape).join(',')).join('\r\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([content],{type:'text/csv;charset=utf-8'}));a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000) }
 function Brand({light=false}){return <div className={'brand '+(light?'brand-light':'')}><div className="brand-mark"><HeartHandshake size={24}/></div><div><strong>AMiCUS <span>Outreach</span></strong><small>UP MANILA · VOY 2026</small></div></div>}
 function Toast({message,onClose}){return message?<div className="toast" role="status"><Check size={18}/>{message}<button onClick={onClose} aria-label="Dismiss"><X size={14}/></button></div>:null}
-function PublicPage({onLogin}){return <div className="public-page"><header className="public-header"><div className="container nav-inner"><Brand/><nav className="nav-links"><a href="#mission">Our mission</a><a href="#schedule">Activities</a><a href="#support">Partner with us</a></nav><button className="btn btn-outline small" onClick={onLogin}><LockKeyhole size={15}/> Officer portal</button></div></header><main><section className="hero"><div className="container hero-content"><div className="hero-main"><div className="eyebrow"><span className="eyebrow-dot"/> NOVEMBER 1–7, 2026 · ABUYOG, LEYTE</div><h1>Awaken hope.<br/><em>Extend care.</em></h1><p>Faith in action, health in our communities. A youth-led week of encouragement, health education, and compassionate outreach.</p><div className="hero-buttons"><a className="btn btn-primary" href="#mission">Explore the mission <ArrowRight size={17}/></a><a className="btn btn-ghost" href="#support">Become a partner</a></div><div className="hero-tags"><span><CalendarDays size={16}/> Nov 1–7, 2026</span><span><MapPin size={16}/> Brgy. Tinali-an, Abuyog, Leyte</span></div></div><div className="hero-art"><div className="orb orb-one"/><div className="orb orb-two"/><div className="hero-art-inner"><Sparkles size={30}/><span>VOICE OF YOUTH 2026</span><strong>AWAKEN</strong><div className="hero-art-line"/><p>Community Health Outreach<br/>& Medical Mission</p><div className="hero-cross">✦</div></div></div></div></section><section id="mission" className="section container"><div className="section-heading"><div><span className="overline">OUR PURPOSE</span><h2>Bringing care closer<br/>to the community.</h2></div><p>This collaboration brings together Adventist youth and student volunteers to support health literacy, compassionate service, and spiritual encouragement. Services remain open to community members regardless of faith or participation in religious programs.</p></div><div className="feature-grid"><article className="feature"><span className="feature-icon"><HandHeart/></span><h3>Community health outreach</h3><p>Basic health screening, education, and referrals subject to available qualified providers and coordination with local health authorities.</p></article><article className="feature"><span className="feature-icon"><Users/></span><h3>Volunteer-led service</h3><p>Connecting students, healthcare professionals, community partners, and youth volunteers to serve together.</p></article><article className="feature"><span className="feature-icon"><Sparkles/></span><h3>Voice of Youth: AWAKEN</h3><p>Evening gospel messages and community fellowship focused on hope, purpose, and faith.</p></article></div></section><section id="schedule" className="section muted-section"><div className="container"><span className="overline">EVENTS & ACTIVITIES</span><h2>One week. Meaningful impact.</h2><div className="schedule-grid"><div className="schedule-card accent"><span className="schedule-number">01—07</span><h3>Voice of Youth: AWAKEN</h3><p>November 1–7, 2026</p><div className="schedule-meta"><CalendarDays size={17}/> Evening program · From 5:30 PM</div><div className="schedule-meta"><MapPin size={17}/> Barangay Tinali-an, Abuyog, Leyte</div></div><div className="schedule-card"><span className="schedule-number">TBA</span><h3>Community Medical Mission</h3><p>One morning during November 1–7</p><div className="schedule-meta"><CalendarDays size={17}/> Exact date dependent on physician availability</div><div className="schedule-meta"><MapPin size={17}/> Proposed: Barangay Covered Court</div></div><div className="schedule-card"><span className="schedule-number">01—07</span><h3>Daily Health Education</h3><p>Practical community health learning</p><div className="schedule-meta"><BadgeCheck size={17}/> Screening and talks as staffing permits</div><div className="schedule-meta"><ShieldCheck size={17}/> Confirmed services to be announced</div></div></div></div></section><section id="support" className="section container support-section"><div className="support-copy"><span className="overline">BECOME A PARTNER</span><h2>Small acts of generosity.<br/><em>Lasting community impact.</em></h2><p>We welcome conversations about in-kind supplies, medicines through authorized channels, screening materials, groceries for families, snacks and meals for volunteers or beneficiaries, and monetary support.</p><p>To coordinate sponsorships or request an official solicitation letter, please contact the organizing team through your existing AMiCUS/VOY organizers. Verified payment instructions and the official contact channel will be published only once approved.</p><div className="support-note"><ShieldCheck size={20}/><span>We do not collect online payments on this website. Contributions must be confirmed and recorded by the authorized treasurer.</span></div></div><div className="support-visual"><div className="support-icon"><Gift size={40}/></div><h3>Support the outreach</h3><p>Supplies · Volunteer meals · Community groceries · Health services</p><div className="support-divider"/><strong>AMiCUS UP Manila × AMSN-UP × Adventist Youth – Abuyog District</strong></div></section></main><footer className="footer"><div className="container footer-inner"><Brand light/><p>Service with faith. Care with compassion.<br/>© 2026 AMiCUS Outreach. Event details subject to confirmation.</p></div></footer></div>}
+function PublicPage({onLogin}){
+  return <div className="public-page">
+    <header className="public-header">
+      <div className="container nav-inner">
+        <Brand/>
+        <nav className="nav-links">
+          <a href="#about">About</a>
+          <a href="#activities">Activities</a>
+          <a href="#partners">Partners</a>
+          <a href="#support">Support</a>
+        </nav>
+        <button className="btn btn-outline small" onClick={onLogin}><LockKeyhole size={15}/> Officer portal</button>
+      </div>
+    </header>
+
+    <main>
+      <section className="hero hero-enhanced">
+        <div className="container hero-content hero-content-enhanced">
+          <div className="hero-main">
+            <div className="eyebrow"><span className="eyebrow-dot"/> NOVEMBER 1–7, 2026 · ABUYOG, LEYTE</div>
+            <h1>VOY: AWAKEN 2026<br/><em>Community Health Outreach</em></h1>
+            <p>
+              Welcome to the public page of the <strong>AMiCUS UP Manila × AMSN Philippines × Voice of Youth</strong>
+              collaboration for Abuyog, Leyte. This site introduces our outreach, medical mission, volunteer effort,
+              and ways partners can help support the community.
+            </p>
+            <div className="hero-buttons">
+              <a className="btn btn-primary" href="#about">Explore the outreach <ArrowRight size={17}/></a>
+              <a className="btn btn-ghost" href="#support">Become a partner</a>
+            </div>
+            <div className="hero-tags">
+              <span><CalendarDays size={16}/> Nov 1–7, 2026</span>
+              <span><MapPin size={16}/> Brgy. Tinali-an, Abuyog, Leyte</span>
+              <span><HeartHandshake size={16}/> Youth-led faith and service initiative</span>
+            </div>
+          </div>
+
+          <div className="hero-visual-stack">
+            <div className="logo-card main-card">
+              <img src={`${import.meta.env.BASE_URL}assets/voy-logo.png`} alt="Voice of Youth logo" className="voy-hero-logo"/>
+              <div className="logo-card-caption">
+                <span className="overline">FEATURED CAMPAIGN</span>
+                <strong>Voice of Youth: AWAKEN</strong>
+                <p>Evening gospel meetings, community engagement, and health outreach.</p>
+              </div>
+            </div>
+            <div className="logo-card secondary-card">
+              <img src={`${import.meta.env.BASE_URL}assets/amicus-amsn.png`} alt="AMiCUS UP Manila and AMSN Philippines logos" className="partners-hero-image"/>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="section container">
+        <div className="section-heading">
+          <div>
+            <span className="overline">ABOUT THE OUTREACH</span>
+            <h2>Faith in action. Care for our community.</h2>
+          </div>
+          <p>
+            Through compassionate service, youth involvement, and accessible health education, we hope to reach families in Barangay Tinali-an. Community members may join the health outreach regardless of their religious beliefs or participation in VOY activities.
+          </p>
+        </div>
+
+        <div className="feature-grid">
+          <article className="feature">
+            <span className="feature-icon"><Sparkles/></span>
+            <h3>Voice of Youth: AWAKEN</h3>
+            <p>Nightly evangelistic and youth-centered meetings from November 1–7, 2026, starting 5:30 PM onwards.</p>
+          </article>
+          <article className="feature">
+            <span className="feature-icon"><HandHeart/></span>
+            <h3>Medical mission and health outreach</h3>
+            <p>Basic screening, health education, selected consultations and referrals, depending on confirmed staffing and coordination.</p>
+          </article>
+          <article className="feature">
+            <span className="feature-icon"><Users/></span>
+            <h3>Student and youth collaboration</h3>
+            <p>AMiCUS UP Manila, AMSN Philippines, and local Adventist youth working together for faith-based compassionate service.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="partners" className="section muted-section">
+        <div className="container">
+          <div className="section-heading compact-heading">
+            <div>
+              <span className="overline">OUR PARTNERS</span>
+              <h2>Organizations behind the outreach</h2>
+            </div>
+            <p>Meet the organizations working together for community service, health, and hope.</p>
+          </div>
+
+          <div className="partner-logos-grid">
+            <article className="partner-logo-card partner-logo-wide">
+              <div className="split-partners"><img src={`${import.meta.env.BASE_URL}assets/amicus-logo.png`} alt="AMiCUS logo"/><img src={`${import.meta.env.BASE_URL}assets/amsn-logo.png`} alt="Adventist Medical Students Network Philippines logo"/></div>
+              <div>
+                <h3>AMiCUS UP Manila and AMSN Philippines</h3>
+                <p>Student volunteers bringing medical knowledge, compassion, and community partnerships together.</p>
+              </div>
+            </article>
+            <article className="partner-logo-card partner-logo-tall">
+              <img src={`${import.meta.env.BASE_URL}assets/voy-logo.png`} alt="Voice of Youth logo"/>
+              <div>
+                <h3>Voice of Youth</h3>
+                <p>The evangelistic and community engagement arm of the outreach, centered on the 2026 AWAKEN theme.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="activities" className="section container">
+        <div className="section-heading compact-heading">
+          <div>
+            <span className="overline">WHAT TO EXPECT</span>
+            <h2>A week of service and fellowship</h2>
+          </div>
+          <p>From evening gatherings to practical health education and coordinated volunteer work, there are many ways to take part.</p>
+        </div>
+
+        <div className="gallery-grid">
+          <article className="gallery-card">
+            <div className="gallery-image gallery-image-logo"><img src={`${import.meta.env.BASE_URL}assets/voy-logo.png`} alt="VOY campaign visual"/></div>
+            <div className="gallery-copy">
+              <h3>Nightly VOY meetings</h3>
+              <p>Evening sessions focused on hope, faith, and transformation under the AWAKEN campaign theme.</p>
+            </div>
+          </article>
+          <article className="gallery-card">
+            <div className="gallery-image gallery-image-light"><img src={`${import.meta.env.BASE_URL}assets/amicus-amsn.png`} alt="AMiCUS and AMSN partnership visual"/></div>
+            <div className="gallery-copy">
+              <h3>Student-led medical outreach</h3>
+              <p>Volunteer officers and partners coordinate outreach services, sponsorships, and community health activities.</p>
+            </div>
+          </article>
+          <article className="gallery-card text-card">
+            <div className="gallery-copy full-copy">
+              <span className="overline">PLANNED SERVICES</span>
+              <h3>Health screening, education, and support</h3>
+              <ul className="bullet-list">
+                <li>Registration and community assistance</li>
+                <li>Basic vital signs and selected screening</li>
+                <li>Health education and counseling</li>
+                <li>Medication or supply assistance as available</li>
+                <li>Referrals and follow-up coordination</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="schedule" className="section muted-section">
+        <div className="container">
+          <span className="overline">EVENTS & ACTIVITIES</span>
+          <h2>One week. Meaningful impact.</h2>
+          <div className="schedule-grid">
+            <div className="schedule-card accent">
+              <span className="schedule-number">01—07</span>
+              <h3>Voice of Youth: AWAKEN</h3>
+              <p>November 1–7, 2026</p>
+              <div className="schedule-meta"><CalendarDays size={17}/> Evening program · From 5:30 PM</div>
+              <div className="schedule-meta"><MapPin size={17}/> Barangay Tinali-an, Abuyog, Leyte</div>
+            </div>
+            <div className="schedule-card">
+              <span className="schedule-number">TBA</span>
+              <h3>Community Medical Mission</h3>
+              <p>One morning during November 1–7</p>
+              <div className="schedule-meta"><CalendarDays size={17}/> Exact date dependent on physician availability</div>
+              <div className="schedule-meta"><MapPin size={17}/> Proposed: Barangay Covered Court</div>
+            </div>
+            <div className="schedule-card">
+              <span className="schedule-number">01—07</span>
+              <h3>Daily Health Education</h3>
+              <p>Practical community health learning</p>
+              <div className="schedule-meta"><BadgeCheck size={17}/> Screening and talks as staffing permits</div>
+              <div className="schedule-meta"><ShieldCheck size={17}/> Confirmed services to be announced</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="support" className="section container support-section">
+        <div className="support-copy">
+          <span className="overline">BECOME A PARTNER</span>
+          <h2>Small acts of generosity.<br/><em>Lasting community impact.</em></h2>
+          <p>We welcome conversations about in-kind supplies, medicines through authorized channels, screening materials, groceries for families, snacks or meals for volunteers and beneficiaries, and monetary support.</p>
+          <p>To coordinate sponsorships or request an official solicitation letter, please contact the organizing team through your existing AMiCUS/VOY organizers. Verified payment instructions and official contact channels should only be published once approved.</p>
+          <div className="support-note"><ShieldCheck size={20}/><span>This site does not collect online payments. Donations are coordinated directly with authorized organizers and verified by the appointed treasurer.</span></div>
+        </div>
+        <div className="support-visual">
+          <div className="support-icon"><Gift size={40}/></div>
+          <h3>Support the outreach</h3>
+          <p>Supplies · Volunteer meals · Community groceries · Health services</p>
+          <div className="support-divider"/>
+          <strong>AMiCUS UP Manila × AMSN Philippines × Voice of Youth</strong>
+        </div>
+      </section>
+    </main>
+
+    <footer className="footer">
+      <div className="container footer-inner">
+        <Brand light/>
+        <p>Service with faith. Care with compassion.<br/>© 2026 AMiCUS Outreach. Event details subject to confirmation.</p>
+      </div>
+    </footer>
+  </div>
+}
+
 function Modal({title,children,onClose}){return <div className="modal-shade" onMouseDown={e=>{if(e.target===e.currentTarget)onClose()}}><div className="modal" role="dialog" aria-modal="true" aria-label={title}><div className="modal-heading"><h3>{title}</h3><button className="icon-button" onClick={onClose} aria-label="Close"><X size={20}/></button></div><div className="modal-content">{children}</div></div></div>}
 function Input({label,textarea=false,required=false,...props}){return <label className="field"><span>{label}{required&&' *'}</span>{textarea?<textarea required={required} {...props}/>:<input required={required} {...props}/>}</label>}
 function Select({label,options,...props}){return <label className="field"><span>{label}</span><select {...props}>{options.map(x=><option key={x} value={x}>{x}</option>)}</select></label>}
