@@ -1,3 +1,5 @@
+> **GitHub Pages deployment:** Begin with [GITHUB_PAGES_SETUP.md](GITHUB_PAGES_SETUP.md). The public site works on GitHub Pages without a backend; secure officer features require Supabase.
+
 # AMiCUS Outreach Portal
 
 **VOY: AWAKEN 2026 × Community Health Outreach and Medical Mission** — public campaign page and private solicitation/donation officer dashboard.
