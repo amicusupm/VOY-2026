@@ -25,7 +25,7 @@ function PublicPage({onLogin}){
         <nav className="nav-links">
           <a href="#about">About</a>
           <a href="#activities">Activities</a>
-          <a href="#partners">Partners</a>
+          <a href="#partners">Partners</a><a href="#officers">Officers</a>
           <a href="#support">Support</a>
         </nav>
         <button className="btn btn-outline small" onClick={onLogin}><LockKeyhole size={15}/> Officer portal</button>
@@ -54,18 +54,9 @@ function PublicPage({onLogin}){
             </div>
           </div>
 
-          <div className="hero-visual-stack">
-            <div className="logo-card main-card">
-              <img src={`${import.meta.env.BASE_URL}assets/voy-logo.png`} alt="Voice of Youth logo" className="voy-hero-logo"/>
-              <div className="logo-card-caption">
-                <span className="overline">FEATURED CAMPAIGN</span>
-                <strong>Voice of Youth: AWAKEN</strong>
-                <p>Evening gospel meetings, community engagement, and health outreach.</p>
-              </div>
-            </div>
-            <div className="logo-card secondary-card">
-              <img src={`${import.meta.env.BASE_URL}assets/amicus-amsn.png`} alt="AMiCUS UP Manila and AMSN Philippines logos" className="partners-hero-image"/>
-            </div>
+          <div className="outreach-hero-photo">
+            <img src={`${import.meta.env.BASE_URL}assets/outreach-community-group.jpg`} alt="Abuyog District volunteers and community members at a previous outreach"/>
+            <span>FROM OUR PREVIOUS ABUYOG OUTREACH</span>
           </div>
         </div>
       </section>
@@ -140,14 +131,14 @@ function PublicPage({onLogin}){
 
         <div className="gallery-grid">
           <article className="gallery-card">
-            <div className="gallery-image gallery-image-logo"><img src={`${import.meta.env.BASE_URL}assets/voy-logo.png`} alt="VOY campaign visual"/></div>
+            <div className="gallery-image"><img src={`${import.meta.env.BASE_URL}assets/outreach-youth-talk.jpg`} alt="Speaker leading a youth-oriented talk at a previous outreach in Abuyog" loading="lazy"/></div>
             <div className="gallery-copy">
               <h3>Nightly VOY meetings</h3>
               <p>Evening sessions focused on hope, faith, and transformation under the AWAKEN campaign theme.</p>
             </div>
           </article>
           <article className="gallery-card">
-            <div className="gallery-image gallery-image-light"><img src={`${import.meta.env.BASE_URL}assets/amicus-amsn.png`} alt="AMiCUS and AMSN partnership visual"/></div>
+            <div className="gallery-image"><img src={`${import.meta.env.BASE_URL}assets/outreach-children.jpg`} alt="Volunteer facilitating an interactive session with children at a previous Abuyog outreach" loading="lazy"/></div>
             <div className="gallery-copy">
               <h3>Student-led medical outreach</h3>
               <p>Volunteer officers and partners coordinate outreach services, sponsorships, and community health activities.</p>
@@ -166,6 +157,23 @@ function PublicPage({onLogin}){
               </ul>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section className="section previous-outreach-section container" aria-labelledby="outreach-history-heading">
+        <div className="section-heading compact-heading"><div><span className="overline">PREVIOUS COMMUNITY SERVICE</span><h2 id="outreach-history-heading">Moments from Abuyog District outreach</h2></div><p>Real photographs from previous Abuyog outreach activities. These document past efforts and are not photos of the upcoming November 2026 medical mission.</p></div>
+        <div className="history-photo-grid">
+          <figure><img src={`${import.meta.env.BASE_URL}assets/outreach-volunteers.jpg`} alt="Abuyog District volunteers gathered for Global Youth Day 2026" loading="lazy"/><figcaption>Volunteers coming together in service</figcaption></figure>
+          <figure><img src={`${import.meta.env.BASE_URL}assets/outreach-community-group.jpg`} alt="Volunteers and community members with relief supplies during previous Abuyog outreach" loading="lazy"/><figcaption>Community participation and shared support</figcaption></figure>
+        </div>
+      </section>
+
+      <section id="officers" className="section officers-section muted-section">
+        <div className="container">
+          <span className="overline">AMiCUS UP MANILA</span>
+          <h2>Meet our officers</h2>
+          <p className="officers-intro">The organizational chart for the current academic year will be displayed here once the official roster and officer portraits are finalized.</p>
+          <div className="org-chart-placeholder"><div className="org-icon">◎</div><h3>Organizational Chart</h3><p>Reserved for the approved AMiCUS UP Manila organizational chart and current officers’ photos.</p><div className="org-slot-grid"><span>Faculty Adviser</span><span>Chairperson</span><span>Executive Secretary</span><span>Finance</span><span>Membership</span><span>Publicity & Communications</span><span>Religious Affairs</span><span>Socials & Community Service</span></div></div>
         </div>
       </section>
 
