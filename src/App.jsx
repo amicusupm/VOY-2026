@@ -207,6 +207,54 @@ function PublicPage({onLogin}){
         </div>
       </section>
 
+<section id="volunteer" className="section container">
+  <div className="section-heading">
+    <div>
+      <span className="overline">
+        JOIN THE MISSION
+      </span>
+      <h2>Volunteer With Us</h2>
+    </div>
+    <p>
+      Be part of Voice of Youth: AWAKEN 2026
+      and our Community Health Outreach and
+      Medical Mission in Abuyog, Leyte.
+    </p>
+  </div>
+
+  <div className="feature">
+    <span className="feature-icon">
+      <Users />
+    </span>
+
+    <h3>Make a Difference Through Service</h3>
+
+    <p>
+      We welcome medical students, licensed
+      healthcare professionals, and youth
+      volunteers for our activities on
+      November 1–7, 2026.
+    </p>
+
+    <p>
+      Complete the registration form to express
+      your interest and availability. Final
+      assignments will be confirmed by the
+      organizing team.
+    </p>
+
+    <a
+      className="btn btn-primary"
+      href="https://forms.gle/xhXHHdiE5TtuEgnaA"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Register as a Volunteer
+      <ArrowRight size={17} />
+    </a>
+  </div>
+</section>
+
       <section id="support" className="section container support-section">
         <div className="support-copy">
           <span className="overline">BECOME A PARTNER</span>
