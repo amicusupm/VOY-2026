@@ -1,9 +1,10 @@
 
-name: Deploy VOY Website
+name: Deploy VOY 2026 Website
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -12,32 +13,51 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: github-pages
   cancel-in-progress: true
 
 jobs:
   build-and-deploy:
+    name: Build and Deploy Website
     runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - uses: actions/checkout@v4
+      # 1. Download repository files
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      # 2. Install Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: '22'
 
-      - run: npm install
+      # 3. Install website dependencies
+      - name: Install dependencies
+        run: npm install
 
-      - run: npm run build
+      # 4. Build React website with Supabase
+      - name: Build website
+        run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
 
-      - uses: actions/configure-pages@v5
+      # 5. Configure GitHub Pages
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
 
-      - uses: actions/upload-pages-artifact@v3
+      # 6. Upload compiled website
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-      - id: deployment
+      # 7. Publish website
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
