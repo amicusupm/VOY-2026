@@ -223,6 +223,7 @@ function PublicPage({onLogin}){
       </section>
 
       <section className="section container" id="solicitations"><span className="overline">PARTNERSHIP PATHWAYS</span><h2>Choose how you can help.</h2><p>Explore the sponsorship options tailored to different partners. Our team welcomes partnerships for the upcoming community outreach.</p><div className="pathway-grid"><a className="pathway-card" href="?page=pharmacy"><span className="feature-icon"><Gift/></span><h3>Pharmacy & healthcare suppliers</h3><p>Medical consumables, appropriate medicines and vitamins, and professional support under authorized clinical arrangements.</p><strong>View pharmacy sponsorship <ArrowRight size={16}/></strong></a><a className="pathway-card" href="?page=business"><span className="feature-icon"><HeartHandshake/></span><h3>Businesses & community partners</h3><p>Support volunteer meals, water, groceries, transport, logistics, printing, and the evening outreach program.</p><strong>View business sponsorship <ArrowRight size={16}/></strong></a></div></section>
+      <section className="section container program-home-teaser"><div><span className="overline">NOVEMBER 1–7 · DAILY PROGRAM</span><h2>Health education, community visits &amp; Saturday medical mission</h2><p>Seven evenings of health topics—from hypertension and diabetes to infection prevention—with rotating home visits, November 6 testing (subject to authorization), and proposed physician consultations on November 7.</p></div><a className="btn btn-primary" href="?page=volunteers#schedule">View detailed daily schedule <ArrowRight size={16}/></a></section>
       <PublicLetterRequest/><section id="volunteer" className="section container volunteer-section"><div className="section-heading"><div><span className="overline">JOIN THE TEAM</span><h2>Volunteer with us</h2></div><p>Join the community outreach in Abuyog, November 1–7, 2026. Medical students, licensed healthcare professionals, and youth volunteers are welcome to register their interest.</p></div><a className="btn btn-primary" href="https://forms.gle/xhXHHdiE5TtuEgnaA" target="_blank" rel="noopener noreferrer">Volunteer registration <ExternalLink size={16}/></a><p className="volunteer-footnote">Roles and schedules will be confirmed by the organizing team. <a href="?page=volunteers">Read the volunteer guide and register for October 29 IMCI training →</a></p></section>
 
       <section id="support" className="section container support-section">
@@ -259,15 +260,23 @@ const packingItems = [
  {title:'Clinical tools (if available)',items:['Stethoscope','Sphygmomanometer / BP apparatus','Thermometer and pulse oximeter','Penlight, watch with second hand, and measuring tape','Clipboard, pens, and other approved PPE']},
  {title:'Before bringing equipment',items:['Register the owner name with the logistics team','List the equipment type and quantity','Include identifying details when possible','Do not leave valuable apparatus unattended']}
 ]
-const volunteerSchedule=[
- ['5:30–7:30 AM','Wake up, personal hygiene, breakfast, devotion, and team briefing'],
- ['7:30–8:00 AM','Prepare equipment and assign household visit teams'],
- ['8:00–11:30 AM','Community home visits, health interviews, BP and vital signs, permitted basic physical assessments, blood typing support, and health education'],
- ['11:30 AM–1:00 PM','Lunch, documentation, and rest'],
- ['1:00–4:30 PM','Free time, recreation, or designated preparation duties'],
- ['4:30–5:15 PM','Dinner or refreshments and evening venue preparation'],
- ['5:30–8:00 PM','Voice of Youth program at the Tinali-an gym / covered court'],
- ['After 8:00 PM','Return to shared accommodation, house cleanup, debrief, and rest']
+const programDays=[
+ {date:'Nov 1',day:'Sunday',label:'Opening & community entry',morning:'8:00–11:30 AM · Volunteer arrival, housing assignments, safety orientation, equipment inventory, and barangay/BHW coordination',afternoon:'1:30–4:00 PM · Community mapping, initial home visits and baseline assessments',topic:'Hypertension, Heart Attack & Stroke',focus:'Recognizing high blood pressure and emergency warning signs',highlight:'Opening program · Community introduction'},
+ {date:'Nov 2',day:'Monday',label:'Tinali-an household visits',morning:'8:00–11:30 AM · Home visits in Tinali-an: health interviews, blood pressure and other vital signs, supervised assessment, education',afternoon:'1:00–3:30 PM · Optional spring-resort recreation, documentation, rest',topic:'Diabetes & Metabolic Health',focus:'Diabetes risk, healthy habits, and symptoms requiring assessment',highlight:'Home visits · Tinali-an'},
+ {date:'Nov 3',day:'Tuesday',label:'New Pilar community day',morning:'8:00–11:30 AM · Home visits with relocated Pilar families; respectful needs assessment and referral planning',afternoon:'1:00–3:30 PM · Rest, follow-up notes, team fellowship and optional short recreation',topic:'Respiratory Health',focus:'Asthma, cough, smoke exposure, TB awareness and when to seek care',highlight:'Home visits · Pilar / New Pilar'},
+ {date:'Nov 4',day:'Wednesday',label:'First-year volunteers join',morning:'8:00–11:30 AM · First-year arrival/orientation, buddy assignments, optional short coastal activity if arrival permits',afternoon:'1:30–4:00 PM · Mixed-team home visits, vitals, health education and documentation',topic:'Nutrition & Digestive Health',focus:'Balanced diet, safe food/water, common digestive symptoms',highlight:'First-year orientation · Afternoon visits'},
+ {date:'Nov 5',day:'Thursday',label:'Health education & community follow-up',morning:'8:00–11:30 AM · Optional group beach/coastal outing or additional home visits as community needs require',afternoon:'1:00–4:00 PM · Home visits, follow-up screening and PhilHealth YAKAP education/orientation',topic:'Mental Health, Stress & Sleep',focus:'Stress management, social support, healthy sleep and when to seek help',highlight:'PhilHealth YAKAP information session · Afternoon visits'},
+ {date:'Nov 6',day:'Friday',label:'Laboratory screening day',morning:'8:00–11:30 AM · Approved testing station: blood typing (ABO/Rh), glucose, uric acid and cholesterol testing as clinically appropriate, subject to partner laboratory authorization and supplies',afternoon:'1:00–3:30 PM · Results documentation, referrals, limited recreation; 3:30–5:00 PM · Saturday clinic preparation',topic:'Dengue, TB & Infection Prevention',focus:'Warning signs, prevention, responsible antibiotic use',highlight:'Laboratory screening · Clinic preparations'},
+ {date:'Nov 7',day:'Saturday',label:'Sabbath & physician consultations',morning:'8:00–11:30 AM · Sabbath School, Divine Worship and EVAA speaking engagement (timing/transport to be confirmed)',afternoon:'1:00–4:00 PM · Physician-led consultations if confirmed with doctors; 4:00–5:00 PM · Prescriptions/authorized dispensing, referrals, cleanup and closing reports',topic:'Screening, Warning Signs & Continuing Care',focus:'When to seek urgent help, referrals and continuity of care',highlight:'Four confirmed doctors · Proposed afternoon clinic'}
+]
+const dayTimePlan=[
+ ['7:00–8:00 AM','Breakfast, devotion, team briefing and preparation (except Sabbath worship arrangements)'],
+ ['8:00–11:30 AM','Morning activity: see each day’s specific assignment'],
+ ['11:30 AM–1:00 PM','Lunch, documentation, cleanup and rest'],
+ ['1:00–4:00 PM','Afternoon outreach / recreation / special activity according to date'],
+ ['4:00–5:15 PM','Return, wash up, dinner or refreshments, and evening venue setup'],
+ ['5:30–8:00 PM','Voice of Youth evening program, with a daily health topic'],
+ ['After 8:00 PM','Return to shared accommodation, debrief and common-area cleanup']
 ]
 const volunteerQuickFacts=[
  {icon:MapPin,label:'Main venue',value:'Brgy. Tinali-an, Abuyog, Leyte'},
@@ -355,7 +364,7 @@ function IMCIRegistration(){
 }
 function VolunteerGuide({onHome}){
  return <div className="public-page volunteer-guide-page">
-  <header className="public-header"><div className="container nav-inner"><Brand/><nav className="nav-links"><a href="#community">Communities</a><a href="#schedule">Schedule</a><a href="#imci-training">IMCI Training</a><a href="#clinical">Health Services</a><a href="#packing">Checklist</a><a href="#recreation">Explore</a></nav><button className="btn btn-outline small" onClick={onHome}><ArrowLeft size={16}/> Home</button></div></header>
+  <header className="public-header"><div className="container nav-inner"><Brand/><nav className="nav-links"><a href="#community">Communities</a><a href="#schedule">Daily program</a><a href="#imci-training">IMCI Training</a><a href="#clinical">Health Services</a><a href="#packing">Checklist</a><a href="#recreation">Explore</a></nav><button className="btn btn-outline small" onClick={onHome}><ArrowLeft size={16}/> Home</button></div></header>
   <main>
    <section className="volunteer-guide-hero">
     <div className="container volunteer-hero-layout">
@@ -394,8 +403,11 @@ function VolunteerGuide({onHome}){
    <section className="section muted-section" id="schedule">
     <div className="container">
       <span className="overline">DAILY FLOW</span>
-      <h2>What volunteers can expect each day</h2>
-      <div className="guide-schedule">{volunteerSchedule.map(([time,activity])=><div className="guide-schedule-row" key={time}><strong>{time}</strong><span>{activity}</span></div>)}</div>
+      <h2>November 1–7: Detailed daily program</h2>
+      <p className="section-lead">A flexible rotation of morning and afternoon home visits gives volunteers time for service, preparation and recreation. Most first-year volunteers are expected to start November 4.</p>
+      <div className="program-week-grid">{programDays.map((d,i)=><article className="program-day" key={d.date}><div className="program-day-top"><div className="program-day-date"><strong>{d.date}</strong><span>{d.day}</span></div><div><small>DAY {i+1}</small><h3>{d.label}</h3></div></div><div className="program-day-slot"><span>Morning</span><p>{d.morning}</p></div><div className="program-day-slot"><span>Afternoon</span><p>{d.afternoon}</p></div><div className="program-day-night"><span>5:30–8:00 PM · NIGHTLY HEALTH FEATURE</span><strong>{d.topic}</strong><p>{d.focus}</p></div><div className="program-highlight">{d.highlight}</div></article>)}</div>
+      <h3 className="program-subheading">Common daily time slots</h3>
+      <div className="guide-schedule">{dayTimePlan.map(([time,activity])=><div className="guide-schedule-row" key={time}><strong>{time}</strong><span>{activity}</span></div>)}</div>
       <div className="mini-check-grid">
         <div className="guide-card compact-card"><h3>Morning focus</h3><ul className="tick-list"><li>Home visits</li><li>BP and vital signs</li><li>Basic physical assessment</li><li>Health education</li><li>Documentation and referrals</li></ul></div>
         <div className="guide-card compact-card"><h3>Afternoon & evening</h3><ul className="tick-list"><li>Free time or prep duties in the afternoon</li><li>Return in time for dinner and set-up</li><li>Voice of Youth program starts at 5:30 PM</li><li>House cleanup and debrief after program</li></ul></div>
@@ -404,6 +416,7 @@ function VolunteerGuide({onHome}){
     </div>
    </section>
 
+   <section className="section container" id="yakap-orientation"><span className="overline">HEALTH RIGHTS & CONTINUITY OF CARE</span><h2>PhilHealth YAKAP: Know your primary care benefits</h2><div className="guide-grid guide-grid-featured"><div className="guide-card"><h3>Thursday, November 5 · Proposed information session</h3><p>During the afternoon community outreach, the team will introduce <strong>PhilHealth Yaman ng Kalusugan (YAKAP)</strong>: its purpose, possible primary care checkups, laboratory services and eligible outpatient medicines, and how residents can learn about selecting a participating YAKAP clinic.</p><p style={{marginTop:12}}>This is <strong>education and referral guidance only</strong>, not an official registration drive unless a PhilHealth-authorized partner confirms participation.</p></div><div className="guide-card"><h3>What residents can learn</h3><ul className="tick-list"><li>What YAKAP is and who may access it</li><li>How to identify a participating YAKAP clinic</li><li>Where to ask about clinic selection and covered services</li><li>Why follow-up with a regular primary care provider matters</li></ul><p style={{marginTop:14}}><a href="https://www.philhealth.gov.ph/yakap/" target="_blank" rel="noopener noreferrer">PhilHealth official YAKAP information <ExternalLink size={14}/></a></p></div></div><div className="guide-note">The VOY outreach is not itself a PhilHealth-accredited YAKAP clinic. The actual availability of benefits depends on PhilHealth rules and participating providers; no onsite registration or benefits processing is promised.</div></section>
    <IMCIRegistration/>
 
    <section className="section container" id="clinical">

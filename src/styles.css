@@ -145,3 +145,22 @@
 .public-letter-request textarea{width:100%;padding:12px;border:1px solid #cbdcd0;border-radius:9px;font:inherit;resize:vertical}
 .request-empty{padding:22px;color:#617a6b}
 @media(max-width:800px){.request-layout{grid-template-columns:1fr}}
+
+/* VOY 2026 dated program */
+.program-home-teaser{display:flex;align-items:center;justify-content:space-between;gap:28px;border-top:1px solid #e3eae4}
+.program-home-teaser>div{max-width:740px}.program-home-teaser p{line-height:1.7;color:#51695b}
+.program-week-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:26px}
+.program-day{background:#fff;border:1px solid #d9e5dc;border-radius:18px;padding:23px;display:flex;flex-direction:column;gap:15px;box-shadow:0 6px 22px #153c2410}
+.program-day-top{display:flex;align-items:center;gap:17px;border-bottom:1px solid #edf0eb;padding-bottom:13px}
+.program-day-date{flex:none;min-width:80px;border-radius:12px;background:#ecf4ec;padding:12px;text-align:center}
+.program-day-date strong{font-size:18px;color:#1b5b3e;display:block}.program-day-date span{font-size:12px;color:#537260}
+.program-day-top small{font-size:11px;letter-spacing:.1em;font-weight:800;color:#647a6c}
+.program-day-top h3{font-size:17px;margin:4px 0 0;line-height:1.35}
+.program-day-slot span,.program-day-night span{display:block;text-transform:uppercase;font-size:10px;letter-spacing:.11em;font-weight:800;color:#447257}
+.program-day-slot p{font-size:13px;line-height:1.68;margin:5px 0 0;color:#3a5645}
+.program-day-night{background:#edf6f0;border-radius:12px;padding:14px;margin-top:auto}
+.program-day-night strong{display:block;font-size:14px;margin-top:6px;color:#21583e}
+.program-day-night p{font-size:12px;line-height:1.6;margin:5px 0 0;color:#526b5b}
+.program-highlight{font-size:12px;color:#466352;font-weight:700}
+.program-subheading{margin:32px 0 0}
+@media(max-width:800px){.program-week-grid{grid-template-columns:1fr}.program-home-teaser{flex-direction:column;align-items:flex-start}}
