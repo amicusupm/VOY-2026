@@ -75,3 +75,20 @@
 .donor-section{border-top:1px solid #e5ece6;margin-top:35px;padding-top:32px}.donor-section h2{font:800 28px Manrope,sans-serif}.donation-payment{display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,420px);gap:20px;border:1px solid #dae7db;background:#f1f7ef;border-radius:16px;padding:22px;margin:20px 0}.payment-details{display:grid;gap:12px;margin:14px 0}.payment-details div{padding:12px 14px;background:#fff;border:1px solid #dce8dc;border-radius:12px;font-size:13px;line-height:1.7}.payment-details span{display:block;color:#486255}.qr-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}.qr-card{margin:0;background:#fff;border:1px solid #dce8dc;border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px}.qr-card img{width:100%;background:#fff;object-fit:contain;border-radius:10px;padding:4px}.qr-card figcaption{display:flex;flex-direction:column;gap:2px;font-size:12px;line-height:1.45;color:#486255}.qr-card strong{font-size:13px;color:#18352c}.donation-payment p{font-size:13px;line-height:1.7}.donor-form{padding:22px;border:1px solid #e5ebe5;border-radius:14px}.donor-consent{display:flex;align-items:flex-start;gap:9px;margin:12px 0 22px;font-size:12px;color:#546d60}.donor-check{margin:25px 0;background:#f8faf7;border:1px solid #e5ebe5;border-radius:14px;padding:20px}.donor-check-row{display:flex;gap:9px}.donor-check-row input{min-width:0;flex:1;padding:10px;border:1px solid #cddbd2;border-radius:8px}.donor-confirmation{padding:16px;margin:18px 0;background:#edf8ef;border:1px solid #d2e9d9;border-radius:12px;overflow-wrap:anywhere}.donor-confirmation code{display:block;margin:8px 0}.donor-confirmation p{line-height:1.6}.donor-confirmation button{margin:8px 0}@media(max-width:860px){.donation-payment{grid-template-columns:1fr}.qr-grid{grid-template-columns:1fr 1fr}}@media(max-width:680px){.qr-grid{grid-template-columns:1fr}.qr-card img{max-width:220px;margin:auto}.donor-check-row{flex-direction:column}}@media print{.donor-section form,.donor-check-row,.donation-payment,.donor-section button{display:none!important}}
 
 .volunteer-section{border-top:1px solid #e7ede4}.volunteer-footnote{font-size:12px;color:#64796d;margin-top:13px}
+
+/* Volunteer guide — public informational page */
+.volunteer-guide-hero{padding:86px 0 76px;background:linear-gradient(120deg,#eef5ee,#faf8ef)}
+.volunteer-guide-hero h1{font-size:clamp(2.25rem,5vw,4rem);max-width:850px;line-height:1.1;margin:18px 0}
+.volunteer-guide-hero p{max-width:780px;line-height:1.75}
+.guide-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.volunteer-guide-page .section{scroll-margin-top:30px}
+.guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px;margin:24px 0}
+.guide-card{display:block;padding:23px 24px;border-radius:18px;background:white;border:1px solid #dce5dd;color:inherit;text-decoration:none}
+.guide-card h3{margin:0 0 10px;font-size:1.2rem;display:flex;gap:8px;align-items:center}
+.guide-card p{margin:0;line-height:1.7}
+.guide-link:hover{border-color:#80a88d;box-shadow:0 6px 24px #153d2210}
+.guide-note{background:#e9f0eb;border-left:4px solid #6d9a79;padding:18px 20px;border-radius:8px;line-height:1.75;margin-top:18px}
+.guide-schedule{border:1px solid #dbe4dc;border-radius:16px;overflow:hidden;margin-top:22px;background:white}
+.guide-schedule-row{display:grid;grid-template-columns:165px 1fr;padding:14px 18px;gap:20px;border-bottom:1px solid #edf0ee;line-height:1.55}
+.guide-schedule-row:last-child{border-bottom:0}
+@media(max-width:700px){.guide-grid{grid-template-columns:1fr}.guide-schedule-row{grid-template-columns:1fr;gap:2px}.volunteer-guide-hero{padding:54px 0}}
