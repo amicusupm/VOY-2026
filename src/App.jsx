@@ -254,20 +254,62 @@ function PublicPage({onLogin}){
 
 
 const packingItems = [
- ['Personal essentials','Clothes for the full stay, comfortable shoes, slippers, towel, soap, toothpaste, shampoo, deodorant, personal medications, reusable water bottle, valid ID, umbrella or raincoat, phone charger, power bank, and optional cash.'],
- ['Sleeping & accommodation','Bring your own pillow, blanket or sleeping bag and personal hygiene kit unless your coordinator confirms these will be provided. Label your belongings.'],
- ['Clinical tools (if available)','Stethoscope, sphygmomanometer/BP apparatus, thermometer, pulse oximeter, penlight, watch with second hand, measuring tape, clipboard, pens, and approved personal protective equipment.'],
- ['Equipment inventory','Register the name of the owner, equipment type, quantity, and identifying details with the logistics team before sharing equipment. Do not leave valuable apparatus unattended.']
+ {title:'Personal belongings',items:['Enough clothes for the full stay','Comfortable shoes and slippers','Towel, soap, toothpaste, shampoo, and personal hygiene kit','Personal medications, reusable water bottle, valid ID, umbrella or raincoat','Phone charger, power bank, and extra personal money']},
+ {title:'Sleeping & accommodation',items:['Pillow, blanket, malong, or sleeping bag','Light bedsheet if preferred','Mosquito protection and personal essentials','Label your belongings to avoid mix-ups']},
+ {title:'Clinical tools (if available)',items:['Stethoscope','Sphygmomanometer / BP apparatus','Thermometer and pulse oximeter','Penlight, watch with second hand, and measuring tape','Clipboard, pens, and other approved PPE']},
+ {title:'Before bringing equipment',items:['Register the owner name with the logistics team','List the equipment type and quantity','Include identifying details when possible','Do not leave valuable apparatus unattended']}
 ]
 const volunteerSchedule=[
  ['5:30–7:30 AM','Wake up, personal hygiene, breakfast, devotion, and team briefing'],
  ['7:30–8:00 AM','Prepare equipment and assign household visit teams'],
- ['8:00–11:30 AM','Community home visits, health interviews, BP/vital signs, permitted basic physical assessments and education'],
+ ['8:00–11:30 AM','Community home visits, health interviews, BP and vital signs, permitted basic physical assessments, blood typing support, and health education'],
  ['11:30 AM–1:00 PM','Lunch, documentation, and rest'],
- ['1:00–4:30 PM','Free time, recreation or designated preparation duties'],
- ['4:30–5:15 PM','Dinner/refreshments and evening venue preparation'],
- ['5:30–8:00 PM','Voice of Youth program at the Tinali-an gym/covered court'],
- ['After 8:00 PM','Return to shared accommodation, house cleanup and debrief']
+ ['1:00–4:30 PM','Free time, recreation, or designated preparation duties'],
+ ['4:30–5:15 PM','Dinner or refreshments and evening venue preparation'],
+ ['5:30–8:00 PM','Voice of Youth program at the Tinali-an gym / covered court'],
+ ['After 8:00 PM','Return to shared accommodation, house cleanup, debrief, and rest']
+]
+const volunteerQuickFacts=[
+ {icon:MapPin,label:'Main venue',value:'Brgy. Tinali-an, Abuyog, Leyte'},
+ {icon:Users,label:'Communities served',value:'Tinali-an and relocated Pilar families'},
+ {icon:BadgeCheck,label:'Confirmed doctors',value:'4 licensed physicians'},
+ {icon:CalendarDays,label:'Evening program',value:'5:30 PM–8:00 PM daily'}
+]
+const volunteerServices=[
+ 'Home visits and family health assessment',
+ 'Blood pressure, vital signs, and basic physical assessment',
+ 'Health education and preventive counseling',
+ 'Blood typing for future donor coordination database',
+ 'Consultation and prescription only when a licensed physician is on duty',
+ 'Referral and follow-up coordination when needed'
+]
+const doList=[
+ 'Be punctual for briefings, meals, and assigned duties',
+ 'Ask consent before assessment and respect confidentiality',
+ 'Practice hand hygiene and proper infection prevention',
+ 'Coordinate concerns with your team leader or preceptor',
+ 'Help with cooking-related tasks, washing dishes, and cleaning shared spaces',
+ 'Bring extra money for optional afternoon activities and personal needs'
+]
+const dontList=[
+ 'Do not diagnose or prescribe beyond your role',
+ 'Do not photograph patients without proper consent',
+ 'Do not post identifying health information online',
+ 'Do not leave the group or the venue without informing coordinators',
+ 'Do not borrow equipment or belongings without permission',
+ 'Do not leave the house or activity area messy for others'
+]
+const recreationSpots=[
+ {title:'Castañas Spring Resort',url:'https://www.google.com/maps/search/?api=1&query=Castanas+Spring+Resort+Abuyog+Leyte',copy:'A refreshing spring outing option in the Abuyog area. Confirm access and opening hours first.'},
+ {title:'Malaguicay Linaw Falls',url:'https://www.google.com/maps/search/?api=1&query=Malaguicay+Linaw+Falls+Abuyog+Leyte',copy:'A scenic waterfall destination if trail conditions and weather are favorable.'},
+ {title:'Abuyog beaches',url:'https://www.google.com/maps/search/?api=1&query=beaches+Abuyog+Leyte',copy:'Optional coastal stop for rest and fellowship, depending on time and sea conditions.'},
+ {title:'Pickleball / local sports',url:'https://www.google.com/maps/search/?api=1&query=pickleball+Abuyog+Leyte',copy:'Group recreation when a suitable court or play area is available.'},
+ {title:'Sea of Clouds (Baybay side)',url:'https://www.google.com/maps/search/?api=1&query=sea+of+clouds+Baybay+Leyte',copy:'A longer side trip outside Abuyog, best considered only if schedules allow.'}
+]
+const venueGallery=[
+ {src:asset('venue-tinalian-gym.jpg'),alt:'Tinali-an covered court or gym where the evening program will be held',title:'Main evening venue',copy:'The Tinali-an covered court / session hall area will host the Voice of Youth program and gathering activities.'},
+ {src:asset('venue-tinalian-street.jpg'),alt:'Street view in the Tinali-an community in Abuyog, Leyte',title:'Community setting',copy:'Volunteers will move through residential areas for morning household visits and community engagement.'},
+ {src:asset('venue-tinalian-landscape.jpg'),alt:'Landscape and fields near Tinali-an, Abuyog, Leyte',title:'Rural environment',copy:'The outreach area includes a rural landscape, homes, and relocation-related communities that need respectful, practical service.'}
 ]
 function IMCIRegistration(){
  const [form,setForm]=useState({full_name:'',email:'',affiliation:'',volunteer_role:'Medical student',attendance:'Yes, I plan to attend',consent:false,website:''});
@@ -289,18 +331,109 @@ function IMCIRegistration(){
 }
 function VolunteerGuide({onHome}){
  return <div className="public-page volunteer-guide-page">
-  <header className="public-header"><div className="container nav-inner"><Brand/><nav className="nav-links"><a href="#community">Communities</a><a href="#schedule">Schedule</a><a href="#imci-training">IMCI Training</a><a href="#clinical">Health Services</a><a href="#packing">What to bring</a><a href="#recreation">Explore</a></nav><button className="btn btn-outline small" onClick={onHome}><ArrowLeft size={16}/> Home</button></div></header>
+  <header className="public-header"><div className="container nav-inner"><Brand/><nav className="nav-links"><a href="#community">Communities</a><a href="#schedule">Schedule</a><a href="#imci-training">IMCI Training</a><a href="#clinical">Health Services</a><a href="#packing">Checklist</a><a href="#recreation">Explore</a></nav><button className="btn btn-outline small" onClick={onHome}><ArrowLeft size={16}/> Home</button></div></header>
   <main>
-   <section className="volunteer-guide-hero"><div className="container"><span className="overline">VOY 2026 · AWAKEN: HOPE & HEALING</span><h1>Volunteer Information & Guidelines</h1><p>November 1–7, 2026 · Barangay Tinali-an, Abuyog, Leyte</p><p>Everything our volunteer team needs to prepare for compassionate service, shared living, and meaningful fellowship.</p><div className="guide-actions"><a className="btn btn-primary" href="https://forms.gle/xhXHHdiE5TtuEgnaA" target="_blank" rel="noopener noreferrer">Register to volunteer <ExternalLink size={16}/></a><a className="btn btn-outline" href="#imci-training">Register for IMCI Training</a><a className="btn btn-outline" href="#packing">Packing checklist</a></div></div></section>
-   <section className="section container" id="community"><span className="overline">KNOW OUR COMMUNITIES</span><h2>Two communities, one outreach.</h2><div className="guide-grid"><div className="guide-card"><h3>Barangay Tinali-an</h3><p>Our outreach base and evening program venue is in Barangay Tinali-an, Abuyog, Leyte. Morning teams will coordinate household visits with the local community and barangay health workers.</p></div><div className="guide-card"><h3>Barangay Pilar / New Pilar</h3><p>We also aim to serve families from Barangay Pilar, a community affected by the April 2022 Agaton landslides, including residents of the relocation community in the Tinali-an area. We approach every family with dignity and without assumptions about their circumstances.</p></div></div><div className="guide-note"><strong>Community profile:</strong> Official current household counts, age distribution, and needs for Tinali-an and relocated Pilar residents are being confirmed with barangay and RHU partners. We will not publish unverified numbers. Key assessment priorities include access to care, BP and chronic-disease risks, family health, preventive education, post-disaster well-being, and timely referrals.</div></section>
-   <section className="section muted-section" id="schedule"><div className="container"><span className="overline">DAILY FLOW</span><h2>Our tentative program schedule</h2><div className="guide-schedule">{volunteerSchedule.map(([time,activity])=><div className="guide-schedule-row" key={time}><strong>{time}</strong><span>{activity}</span></div>)}</div><p className="volunteer-footnote">Subject to change based on local needs, transport, physician duty schedules, weather, and volunteer assignments. Evening program: 5:30–8:00 PM at the Tinali-an gym/covered court.</p></div></section>
+   <section className="volunteer-guide-hero">
+    <div className="container volunteer-hero-layout">
+      <div>
+        <span className="overline">VOY 2026 · AWAKEN: HOPE & HEALING</span>
+        <h1>Volunteer Information & Guidelines</h1>
+        <p className="hero-location"><MapPin size={18}/> November 1–7, 2026 · Barangay Tinali-an, Abuyog, Leyte</p>
+        <p>Everything our volunteer team needs to prepare for compassionate service, shared living, community home visits, and the evening Voice of Youth program.</p>
+        <div className="guide-actions"><a className="btn btn-primary" href="https://forms.gle/xhXHHdiE5TtuEgnaA" target="_blank" rel="noopener noreferrer">Register to volunteer <ExternalLink size={16}/></a><a className="btn btn-outline" href="#imci-training">Register for IMCI Training</a><a className="btn btn-outline" href="#packing">Open packing checklist</a></div>
+      </div>
+      <figure className="hero-photo-card">
+        <img src={asset('venue-tinalian-gym.jpg')} alt="Covered court or session hall in Barangay Tinali-an, Abuyog, Leyte" />
+        <figcaption>Tinali-an covered court / session hall · evening program venue</figcaption>
+      </figure>
+    </div>
+   </section>
+
+   <section className="section container volunteer-facts-grid">
+    {volunteerQuickFacts.map(({icon:Icon,label,value})=><div className="fact-card" key={label}><span className="fact-icon"><Icon size={20}/></span><div><small>{label}</small><strong>{value}</strong></div></div>)}
+   </section>
+
+   <section className="section container" id="community">
+    <span className="overline">KNOW THE VENUE & COMMUNITIES</span>
+    <h2>Two communities, one outreach mission</h2>
+    <p className="section-lead">The outreach base is in <strong>Barangay Tinali-an, Abuyog, Leyte</strong>. We also expect to serve families connected to <strong>Barangay Pilar / New Pilar</strong>, especially those affected by landslides and now situated within the Tinali-an land area. Our approach must remain respectful, practical, and community-centered.</p>
+    <div className="venue-photo-grid">
+      {venueGallery.map(photo=><figure className="venue-photo-card" key={photo.title}><img src={photo.src} alt={photo.alt}/><figcaption><strong>{photo.title}</strong><span>{photo.copy}</span></figcaption></figure>)}
+    </div>
+    <div className="guide-grid guide-grid-featured">
+      <div className="guide-card"><h3>Tinali-an</h3><p>Main venue for the project base, morning team dispatch, and the nightly 5:30–8:00 PM Voice of Youth program at the covered court or gym.</p></div>
+      <div className="guide-card"><h3>Pilar / New Pilar</h3><p>Part of the population we hope to reach includes relocated or landslide-affected families. Community needs may include BP monitoring, chronic disease risk screening, family health support, preventive counseling, and referral guidance.</p></div>
+    </div>
+    <div className="guide-note"><strong>Community note:</strong> Demographic figures and exact household counts are still subject to local validation, so the website uses a descriptive summary instead of unverified numbers.</div>
+   </section>
+
+   <section className="section muted-section" id="schedule">
+    <div className="container">
+      <span className="overline">DAILY FLOW</span>
+      <h2>What volunteers can expect each day</h2>
+      <div className="guide-schedule">{volunteerSchedule.map(([time,activity])=><div className="guide-schedule-row" key={time}><strong>{time}</strong><span>{activity}</span></div>)}</div>
+      <div className="mini-check-grid">
+        <div className="guide-card compact-card"><h3>Morning focus</h3><ul className="tick-list"><li>Home visits</li><li>BP and vital signs</li><li>Basic physical assessment</li><li>Health education</li><li>Documentation and referrals</li></ul></div>
+        <div className="guide-card compact-card"><h3>Afternoon & evening</h3><ul className="tick-list"><li>Free time or prep duties in the afternoon</li><li>Return in time for dinner and set-up</li><li>Voice of Youth program starts at 5:30 PM</li><li>House cleanup and debrief after program</li></ul></div>
+      </div>
+      <p className="volunteer-footnote">Schedule may still shift depending on weather, transport, local coordination, and physician availability.</p>
+    </div>
+   </section>
+
    <IMCIRegistration/>
-   <section className="section container" id="clinical"><span className="overline">MEDICAL MISSION & COMMUNITY HEALTH</span><h2>Four licensed physicians confirmed</h2><p>Four doctors have confirmed participation. Their specific duty dates and hours are still being coordinated; consultations and prescriptions will be offered <strong>only while an appropriately licensed clinician is present and providing the service</strong>. We will not promise daily physician consultations.</p><div className="guide-grid"><div className="guide-card"><h3>Morning home visits</h3><p>Health interviews, blood pressure and other vital signs, supervised basic physical examination within competence, health education, documentation, and referral identification. Community members must consent to each activity.</p></div><div className="guide-card"><h3>Blood typing (planned)</h3><p>ABO/Rh(D) typing is planned at an approved station, subject to trained personnel, quality-controlled test kits, proper consent, safe sharps disposal, and a validated documentation and referral procedure. It is not an automatic household procedure.</p></div></div><div className="guide-note"><strong>Patient safety:</strong> No independent diagnosis, prescribing, medication distribution, or invasive procedures by unlicensed volunteers. Seek clinical supervision and follow emergency referral protocols. Health services are open to all and are not conditional on religious participation.</div></section>
-   <section className="section muted-section"><div className="container"><span className="overline">PLANNED COMMUNITY RESOURCE</span><h2>Voluntary blood donor contact registry</h2><p>We hope to offer a <strong>separate opt-in donor contact registry</strong> for people willing to be contacted if a future blood donation request arises. This is a proposed initiative, <strong>not yet an active searchable donor database</strong> or a replacement for licensed blood services.</p><div className="guide-note">Blood typing and registry enrollment require separate consent. Individual identities, contact information, and blood typing results must remain private and accessible only to designated authorized coordinators. Registration does not confirm donor eligibility or compatibility; actual donation, repeat testing, and compatibility checks must occur through authorized blood service facilities.</div></div></section>
-   <section className="section container" id="packing"><span className="overline">PREPARE FOR THE WEEK</span><h2>What to bring</h2><div className="guide-grid">{packingItems.map(([title,desc])=><div className="guide-card" key={title}><h3>{title}</h3><p>{desc}</p></div>)}</div><p>Volunteers bringing BP and examination equipment should notify the logistics team so apparatus can be inventoried and properly assigned. Clinical instruments are encouraged, not required from every volunteer.</p></section>
-   <section className="section muted-section"><div className="container"><span className="overline">LIVING TOGETHER</span><h2>Shared accommodation, shared responsibility</h2><p>Volunteers will stay together at an organizer-arranged house. A cook has been assigned, but <strong>every volunteer must still help with meal preparation, cooking-related tasks, serving, washing dishes, cleaning, waste segregation, and general housekeeping</strong>. Keep personal belongings organized, respect quiet hours and other people's privacy, and conserve shared supplies.</p><div className="guide-grid"><div className="guide-card"><h3>Do</h3><p>Be punctual; ask patient consent; practice hand hygiene; protect confidentiality; coordinate with your team; report urgent concerns; help clean and cook; respect residents and housemates.</p></div><div className="guide-card"><h3>Don't</h3><p>Do not diagnose or prescribe outside your role; photograph patients without authorized consent; post identifying health data; leave your team without notice; borrow belongings without permission; or leave shared spaces dirty.</p></div></div></div></section>
-   <section className="section container" id="recreation"><span className="overline">AFTERNOON FREE TIME</span><h2>Serve the community. Discover Abuyog.</h2><p>When assignments allow, enjoy optional beach visits, spring outings, pickleball, or nearby attractions. Group transport is expected to be available subject to coordinator approval, driver and vehicle capacity, weather, and return before the 5:30 PM program. <strong>Bring extra personal money</strong> for entrance fees, snacks and optional activities.</p><div className="guide-grid"><a className="guide-card guide-link" href="https://www.google.com/maps/search/?api=1&query=Castanas+Spring+Resort+Abuyog+Leyte" target="_blank" rel="noopener noreferrer"><h3>Castañas Spring Resort <ExternalLink size={15}/></h3><p>Spring pools in the Abuyog area. Confirm access and opening hours before visiting.</p></a><a className="guide-card guide-link" href="https://www.google.com/maps/search/?api=1&query=Malaguicay+Linaw+Falls+Abuyog+Leyte" target="_blank" rel="noopener noreferrer"><h3>Malaguicay Linaw Falls <ExternalLink size={15}/></h3><p>Scenic waterfall outing; trail and weather conditions must be checked.</p></a><a className="guide-card guide-link" href="https://www.google.com/maps/search/?api=1&query=beaches+Abuyog+Leyte" target="_blank" rel="noopener noreferrer"><h3>Abuyog beaches <ExternalLink size={15}/></h3><p>Nearby coastal areas for optional group relaxation, subject to sea conditions.</p></a><a className="guide-card guide-link" href="https://www.google.com/maps/search/?api=1&query=pickleball+Abuyog+Leyte" target="_blank" rel="noopener noreferrer"><h3>Pickleball <ExternalLink size={15}/></h3><p>Group play at a locally arranged suitable venue; court availability not yet confirmed.</p></a><a className="guide-card guide-link" href="https://www.google.com/maps/search/?api=1&query=sea+of+clouds+Baybay+Leyte" target="_blank" rel="noopener noreferrer"><h3>Sea of Clouds — Baybay <ExternalLink size={15}/></h3><p>Outside Abuyog; consider a separate longer outing, not a guaranteed afternoon trip.</p></a></div><p className="volunteer-footnote">All excursions are optional; safety and duty coverage come first. Do not leave without the coordinator's knowledge.</p></section>
-   <section className="section muted-section"><div className="container"><span className="overline">TEAM UPDATE</span><h2>Our growing volunteer team</h2><div className="guide-grid"><div className="guide-card"><h3>18 registration responses</h3><p>Based on the volunteer registration export: 16 medical students and 2 other volunteers. Registration does not necessarily mean final attendance.</p></div><div className="guide-card"><h3>4 confirmed doctors</h3><p>Physicians are confirmed separately by organizers; schedules will be released once finalized. The earlier form's credentials are self-reported and must be verified before clinical assignments.</p></div></div><p>Volunteer names, contacts, and qualifications are not published by default. We will list named participants only after explicit consent and confirmation.</p><a className="btn btn-primary" href="https://forms.gle/xhXHHdiE5TtuEgnaA" target="_blank" rel="noopener noreferrer">Volunteer registration <ExternalLink size={16}/></a></div></section>
+
+   <section className="section container" id="clinical">
+    <span className="overline">COMMUNITY MEDICAL MISSION</span>
+    <h2>Health services and clinical reminders</h2>
+    <div className="guide-grid guide-grid-featured">
+      <div className="guide-card"><h3>Current update</h3><p>We now have <strong>4 confirmed doctors</strong>. Physician schedules will still be finalized by the organizing team. Only licensed physicians may handle consultation and prescription services.</p></div>
+      <div className="guide-card"><h3>Blood typing</h3><p>Blood typing may be offered as part of the mission, with records intended for a future community database that can help identify possible blood donors when needed. This should be handled with proper consent and protected data practices.</p></div>
+    </div>
+    <div className="checklist-grid">
+      <div className="checklist-card"><h3>Expected services</h3><ul className="tick-list">{volunteerServices.map(item=><li key={item}>{item}</li>)}</ul></div>
+      <div className="checklist-card"><h3>Important limitations</h3><ul className="tick-list"><li>Consultation and prescription require a confirmed licensed doctor</li><li>Student volunteers should work within assigned roles and supervision</li><li>Do not promise procedures or medicines that have not been confirmed</li><li>All data and patient information must be handled confidentially</li></ul></div>
+    </div>
+   </section>
+
+   <section className="section muted-section" id="packing">
+    <div className="container">
+      <span className="overline">PACKING CHECKLIST</span>
+      <h2>What to bring</h2>
+      <p className="section-lead">Please come prepared for a shared-house setup, field visits, and evening program work. Some items are optional, but personal essentials are strongly encouraged.</p>
+      <div className="checklist-grid">{packingItems.map(group=><div className="checklist-card" key={group.title}><h3>{group.title}</h3><ul className="tick-list">{group.items.map(item=><li key={item}>{item}</li>)}</ul></div>)}</div>
+      <div className="guide-note"><strong>Equipment registration:</strong> If you are bringing a stethoscope, BP apparatus, pulse oximeter, or any shared clinical tool, please register the item with the logistics team so the owner and equipment inventory can be tracked properly.</div>
+    </div>
+   </section>
+
+   <section className="section container">
+    <span className="overline">LIVING TOGETHER</span>
+    <h2>Shared accommodation, shared responsibility</h2>
+    <p className="section-lead">Volunteers will stay together in one house. A cook is assigned, but everyone is still expected to help with preparation, serving, dishwashing, cleaning, and maintaining order in the shared living space.</p>
+    <div className="checklist-grid">
+      <div className="checklist-card"><h3>Do's</h3><ul className="tick-list">{doList.map(item=><li key={item}>{item}</li>)}</ul></div>
+      <div className="checklist-card"><h3>Don'ts</h3><ul className="tick-list">{dontList.map(item=><li key={item}>{item}</li>)}</ul></div>
+    </div>
+   </section>
+
+   <section className="section muted-section" id="recreation">
+    <div className="container">
+      <span className="overline">AFTERNOON FREE TIME</span>
+      <h2>Optional places to explore in and around Abuyog</h2>
+      <p className="section-lead">When assignments allow, volunteers may enjoy short trips or recreation before the evening program. Group transport may be available, but please bring your own extra money for entrance fees, snacks, and personal expenses.</p>
+      <div className="guide-grid">{recreationSpots.map(spot=><a className="guide-card guide-link" href={spot.url} target="_blank" rel="noopener noreferrer" key={spot.title}><h3>{spot.title} <ExternalLink size={15}/></h3><p>{spot.copy}</p></a>)}</div>
+      <p className="volunteer-footnote">All outings are optional and subject to coordinator approval, weather, transport availability, and timely return before the 5:30 PM program.</p>
+    </div>
+   </section>
+
+   <section className="section container">
+    <span className="overline">TEAM UPDATE</span>
+    <h2>Volunteer status so far</h2>
+    <div className="guide-grid guide-grid-featured">
+      <div className="guide-card"><h3>18 registration responses</h3><p>Based on the volunteer form export: 16 medical students and 2 other volunteers. Registration does not automatically confirm final attendance.</p></div>
+      <div className="guide-card"><h3>4 confirmed doctors</h3><p>Physicians are being coordinated separately by the organizing team. Final duty coverage will be announced once fully scheduled.</p></div>
+    </div>
+    <a className="btn btn-primary" href="https://forms.gle/xhXHHdiE5TtuEgnaA" target="_blank" rel="noopener noreferrer">Volunteer registration <ExternalLink size={16}/></a>
+   </section>
   </main><footer className="footer"><div className="container footer-inner"><Brand light/><p>VOY 2026 · AWAKEN: Hope & Healing · Abuyog, Leyte</p></div></footer>
  </div>
 }
